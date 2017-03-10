@@ -79,17 +79,17 @@ this.getAllWork = function () {
 this.refresh = new function () {
   app.getAllWork() ;
 };
-// this.updatme = new function (){
-//   Auth.getUser().then (function (data){
-//     app.username = data.data.username ;
-//     app.useremail = data.data.sid ;
-//     app.pname = data.data.pname;
-//     app.MyWork = data.data.Work ;
-//     app.loadme =true ;
-//
-//   }) ;
-//
-// };
+this.updatme = new function (){
+  Auth.getUser().then (function (data){
+    app.username = data.data.username ;
+    app.useremail = data.data.sid ;
+    app.pname = data.data.pname;
+    app.MyWork = data.data.Work ;
+    app.loadme =true ;
+
+  }) ;
+
+};
 
 this.logout = function () {
 
