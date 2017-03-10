@@ -16,12 +16,12 @@ factory ('Auth',function ($http,$q,AuthToken) {
   };
 
   authFactory.getUser = function () {
-    if (AuthToken.getToken() ) {
-      console.log("Found token")
+    if (AuthToken.getToken()) {
+      console.log("Found token");
       return $http.post('/api/me');
     }
     else {
-      $q.reject ({message : "Sorry there was no token"});
+    $q.reject ({message : "Sorry there was no token"});
     }
   } ;
 

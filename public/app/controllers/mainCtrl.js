@@ -3,19 +3,18 @@ angular.module('mainController',['authServices'])
 
   var app = this ;
   app.loadme =false ;
-  app.MyWork = [] ;
   $rootScope.$on('$routeChangeStart',function(){
     if (Auth.isLoggedIn ()) {
 
       app.isLoggedIn = true ;
 
-      // Auth.getUser().then (function (data){
-      // app.username = data.data.username ;
-      // app.useremail = data.data.sid ;
-      // app.pname = data.data.pname;
-      // app.MyWork = data.data.Work ;
-      // app.loadme =true ;
-      // }) ;
+      Auth.getUser().then (function (data){
+      app.username = data.data.username ;
+      app.useremail = data.data.sid ;
+      app.pname = data.data.pname;
+      app.MyWork = data.data.Work ;
+      app.loadme =true ;
+      }) ;
     }
     else {
 
@@ -56,45 +55,34 @@ angular.module('mainController',['authServices'])
     'codeSource' : app.addworkdata.codeSource
   } ;
   return $http.post('/api/addWork', req).then (function (data){
-    console.log(data) ;
-    app.updatme();
-
+ $location.path('/') ;
 
   }) ;
 };
 app.allWork = new Array () ;
+app.myWork = {} ;
 this.getAllWork = function () {
   return $http.get('/api/allWork').then (function (data){
+app.myWork = new Array () ;
     var Temp = data.data.allusers ;
-    console.log (data) ;
+
     if (Temp != null)
     for (var i = 0; i < Temp.length; i++) {
       for (var j = 0; j < Temp[i].Work.length; j++) {
         app.allWork.push(Temp[i].Work[j]) ;
+        if (Temp[i].username === app.username) {
+        app.myWork.push(Temp[i].Work[j]) ;
+        }
+
       }
     }
   }) ;
 };
 
-this.refresh = new function () {
+app.refresh = new function () {
   app.getAllWork() ;
 };
-this.updatme = new function (){
-  try {
-  Auth.getUser().then (function (data){
-    app.username = data.data.username ;
-    app.useremail = data.data.sid ;
-    app.pname = data.data.pname;
-    app.MyWork = data.data.Work ;
-    app.loadme =true ;
 
-  }) ;
-}
-catch (err) {
-  console.log(err) ;
-}
-
-};
 
 this.logout = function () {
 
