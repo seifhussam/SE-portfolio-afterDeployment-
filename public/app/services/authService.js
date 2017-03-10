@@ -1,5 +1,5 @@
 angular.module('authServices',[]).
-factory ('Auth',function ($http,AuthToken) {
+factory ('Auth',function ($http,$q,AuthToken) {
   authFactory ={} ;
   authFactory.login = function (loginData) {
     return $http.post('/api/authenticate',loginData).then (function (data ){
@@ -21,7 +21,7 @@ factory ('Auth',function ($http,AuthToken) {
       return $http.post('/api/me');
     }
     else {
-  //    $q.reject ({message : "Sorry there was no token"});
+      $q.reject ({message : "Sorry there was no token"});
     }
   } ;
 

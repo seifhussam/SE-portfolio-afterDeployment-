@@ -80,6 +80,7 @@ this.refresh = new function () {
   app.getAllWork() ;
 };
 this.updatme = new function (){
+  try {
   Auth.getUser().then (function (data){
     app.username = data.data.username ;
     app.useremail = data.data.sid ;
@@ -88,6 +89,10 @@ this.updatme = new function (){
     app.loadme =true ;
 
   }) ;
+}
+catch (err) {
+  console.log(err) ;
+}
 
 };
 
