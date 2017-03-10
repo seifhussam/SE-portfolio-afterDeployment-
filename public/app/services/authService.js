@@ -21,7 +21,7 @@ factory ('Auth',function ($http,AuthToken) {
       return $http.post('/api/me');
     }
     else {
-      $q.reject ({message : "Sorry there was no token"});
+  //    $q.reject ({message : "Sorry there was no token"});
     }
   } ;
 
