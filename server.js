@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded ({extended:true})) ;
 app.use(express.static(__dirname+'/public'));
 app.use('/api',appRoutes) ;
 
-mongoose.connect('mongodb://<seifhussam>:<Seifhussam22>@ds127190.mlab.com:27190/gucportfolio', function (err) {
+mongoose.connect('mongodb://seifhussam:Seifhussam22@ds127190.mlab.com:27190/gucportfolio', function (err) {
   if (err)
   console.log ("not connected : " + err) ;
   else
